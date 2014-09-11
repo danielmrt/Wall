@@ -16,17 +16,26 @@ fx=400 #(tamanho da matriz)
 fy=400
 x1=100 #(comessar alterar valor)
 x2=200 #(terminar alterar valor)
+cut=0.99
+r_max=5*(x2-x1)*0.01
+a=1
 grad=p.ones((fx,fy))
 for i in range(x1,x2):
 	for j in range(fy):
-		grad[j][i]*=p.rand()
-for i in range (400):
-    a= random.randint(100,200)
-    b= random.randint(0,400)
-    r= random.randint(10,20)
-    
-##    circle1=plt.Circle((a,b),r,color='white')
-##fig = plt.gcf()
-##fig.gca().add_artist(circle1)
-##fig.savefig('plotcircles.png')
+	    if p.rand()<cut:
+                   grad[j][i]=2
+        else:
+                   grad[j][i]=3
+grid=grad.copy()
+
+for i in range(x1,x2):
+    for j in range(fy):
+        if grad[j][i]==3:
+            rad=int(r_max*p.rand())
+            for ii in range(i-rad,i+rad+1):
+                for jj in range (j-rad,j+rad+1):
+                    if (ii*ii+jj*jj)<(rad*rad):
+                        grid[j][i]=3
+
 p.contour(grad)
+
