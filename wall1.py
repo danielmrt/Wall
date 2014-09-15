@@ -17,7 +17,7 @@ fy=400
 x1=100 #(comessar alterar valor)
 x2=200 #(terminar alterar valor)
 cut=0.99
-r_max=50*(x2-x1)*0.01
+r_max=5*(x2-x1)*0.01
 a=1
 grad=p.ones((fx,fy))
 for i in range(x1,x2):
